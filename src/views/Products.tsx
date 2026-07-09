@@ -5,8 +5,7 @@ import type { Product } from "../types"
 
 export async function loader() {
     const products = await getProducts()
-
-    return {}
+    return products
 }
 export default function Products() {
 
