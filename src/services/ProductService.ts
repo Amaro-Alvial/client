@@ -56,3 +56,21 @@ export async function getProductById(id : Product['id']){
         console.log(error)
     }
 }
+
+export async function updateProduct( data : ProductData, id : Product['id'] ){
+    try {
+        const availability = () => data.availability === "true"
+        const result = safeParse(ProductSchema, {
+            id,
+            name: data.name,
+            price: +data.price,
+            availability: availability()
+        })
+        if (result.success){
+            const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
+            await axios.put(url, result.output)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
