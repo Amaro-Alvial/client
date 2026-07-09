@@ -44,7 +44,7 @@ export async function getProducts(){
 
 export async function getProductById(id : Product['id']){
     try {
-        const url = `${import.meta.env.VITE_API_URL}/api/products${id}`
+        const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
         const { data } = await axios.get(url)
         const result = safeParse(ProductSchema, data.data)
         if (result.success){
